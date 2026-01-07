@@ -4,7 +4,9 @@ from sqlalchemy.orm import sessionmaker
 from app.config import settings
 
 # Create database engine
-engine = create_engine(settings.DATABASE_URL)
+# For SQLite, we need to allow multiple threads
+connect_args = {"check_same_thread": False} if settings.DATABASE_URL.startswith("sqlite") else {}
+engine = create_engine(settings.DATABASE_URL, connect_args=connect_args)
 
 # Create session
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

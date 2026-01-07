@@ -3,8 +3,8 @@ from typing import Optional
 
 
 class Settings(BaseSettings):
-    # Database
-    DATABASE_URL: str = "postgresql://user:password@localhost:5432/nepal tour_ai"
+    # Database (SQLite for local development, use PostgreSQL for production)
+    DATABASE_URL: str = "sqlite:///./nepaltour_ai.db"
 
     # JWT
     SECRET_KEY: str = "your-secret-key-change-this-in-production"
