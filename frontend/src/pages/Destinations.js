@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
+import DestinationDetailModal from '../components/DestinationDetailModal';
 
 function Destinations() {
   const [destinations, setDestinations] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedDestination, setSelectedDestination] = useState(null);
   const [filters, setFilters] = useState({
     category: '',
     search: '',
@@ -149,6 +151,7 @@ function Destinations() {
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
                 onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                onClick={() => setSelectedDestination(dest)}
               >
                 <div style={{
                   height: '200px',
@@ -256,6 +259,12 @@ function Destinations() {
           </div>
         )}
       </div>
+
+      {/* Destination Detail Modal */}
+      <DestinationDetailModal
+        destination={selectedDestination}
+        onClose={() => setSelectedDestination(null)}
+      />
     </div>
   );
 }
