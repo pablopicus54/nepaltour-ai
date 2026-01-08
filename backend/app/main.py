@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
-from app.routes import auth, destinations, recommendations
+from app.routes import auth, destinations, recommendations, itineraries
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -23,6 +23,7 @@ app.add_middleware(
 app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
 app.include_router(destinations.router, prefix="/api/destinations", tags=["Destinations"])
 app.include_router(recommendations.router, prefix="/api/recommendations", tags=["Recommendations"])
+app.include_router(itineraries.router, prefix="/api/itineraries", tags=["Itineraries"])
 
 
 @app.get("/")
@@ -36,7 +37,8 @@ def root():
             "docs": "/docs",
             "auth": "/api/auth",
             "destinations": "/api/destinations",
-            "recommendations": "/api/recommendations"
+            "recommendations": "/api/recommendations",
+            "itineraries": "/api/itineraries"
         }
     }
 

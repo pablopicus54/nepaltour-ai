@@ -45,6 +45,34 @@ function Navbar() {
             Destinations
           </Link>
 
+          <Link to="/map" style={{
+            color: '#333',
+            textDecoration: 'none',
+            fontWeight: '500'
+          }}>
+            Map
+          </Link>
+
+          {isAuthenticated && (
+            <>
+              <Link to="/recommendations" style={{
+                color: '#333',
+                textDecoration: 'none',
+                fontWeight: '500'
+              }}>
+                Recommendations
+              </Link>
+
+              <Link to="/my-itineraries" style={{
+                color: '#333',
+                textDecoration: 'none',
+                fontWeight: '500'
+              }}>
+                My Itineraries
+              </Link>
+            </>
+          )}
+
           {isAuthenticated ? (
             <>
               <span style={{ color: '#666' }}>
